@@ -27,13 +27,9 @@ jobs:
       run: |
         pip install --upgrade pip buildozer cython==0.29.36
 
-    - name: Accept Android SDK licenses automatically
+    - name: Clean previous buildozer cache
       run: |
-        mkdir -p ~/.android
-        echo "### License" > ~/.android/repositories.cfg
-        echo "8933bad161af4178b1185d1a37fbf41ea5269c55" >> ~/.android/repositories.cfg
-        echo "d56f5187479451eabf01fb78af6dfcb131a648db" >> ~/.android/repositories.cfg
-        echo "24333f8a63b6825ea9c5514f83c2829b004d1fb8" >> ~/.android/repositories.cfg
+        rm -rf .buildozer/android/platform/android-sdk
 
     - name: Build with Buildozer
       run: |
