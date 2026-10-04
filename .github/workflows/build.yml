@@ -27,8 +27,18 @@ jobs:
       run: |
         pip install --upgrade pip buildozer cython==0.29.36
 
-    - name: Clean cache and build
+    - name: Accept Android SDK licenses explicitly
       run: |
+        mkdir -p ~/.android
+        echo "### License" > ~/.android/repositories.cfg
+        echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" >> ~/.android/repositories.cfg
+        echo -e "d56f5187479451eabf01fb78af6dfcb131a648db" >> ~/.android/repositories.cfg
+        echo -e "24333f8a63b6825ea9c5514f83c2829b004d1fb8" >> ~/.android/repositories.cfg
+        echo -e "d975f751698a77b660f125453e3a130465d262c2" >> ~/.android/repositories.cfg
+
+    - name: Clean and Build with Buildozer
+      run: |
+        rm -rf .buildozer bin/
         buildozer -v android debug
 
     - name: Upload APK Artifact
@@ -36,4 +46,3 @@ jobs:
       with:
         name: behavioralshield-apk
         path: bin/*.apk
-        
