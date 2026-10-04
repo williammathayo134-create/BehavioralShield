@@ -25,9 +25,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        sudo apt-get update
-        sudo apt-get install -y zlib1g-dev libffi-dev libssl-dev git build-essential autoconf libtool pkg-config
-        pip install --upgrade pip buildozer Cython<3.0
+        pip install --upgrade pip buildozer cython==0.29.36
 
     - name: Accept Android SDK licenses automatically
       run: |
@@ -44,3 +42,4 @@ jobs:
       with:
         name: kunguge-apk
         path: bin/*.apk
+        
