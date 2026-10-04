@@ -27,13 +27,6 @@ jobs:
       run: |
         pip install --upgrade pip buildozer cython==0.29.36
 
-    - name: Accept Android SDK licenses automatically
-      run: |
-        mkdir -p ~/.android
-        echo "### License" > ~/.android/repositories.cfg
-        yes | sdkmanager --licenses || true
-        sdkmanager "platforms;android-33" "build-tools;33.0.2" "platform-tools"
-
     - name: Build with Buildozer
       run: |
         buildozer -v android debug
@@ -43,4 +36,3 @@ jobs:
       with:
         name: kunguge-apk
         path: bin/*.apk
-        
