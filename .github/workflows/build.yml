@@ -32,6 +32,7 @@ jobs:
         mkdir -p ~/.android
         echo "### License" > ~/.android/repositories.cfg
         yes | sdkmanager --licenses || true
+        sdkmanager "platforms;android-33" "build-tools;33.0.2" "platform-tools"
 
     - name: Build with Buildozer
       run: |
