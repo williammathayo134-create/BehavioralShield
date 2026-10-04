@@ -1,4 +1,4 @@
-name: Build Android APK
+name: Build BehavioralShield APK
 
 on:
   push:
@@ -10,35 +10,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
       with:
-        node-version: '18'
-
-    - name: Install Dependencies
-      run: npm install
-
-    - name: Sync Capacitor for Android
-      run: npx cap sync android
+        python-version: '3.10'
 
     - name: Set up JDK 17
       uses: actions/setup-java@v4
       with:
-        java-version: '17'
         distribution: 'temurin'
+        java-version: '17'
 
-    - name: Build Android APK
+    - name: Install dependencies
       run: |
-        cd android
-        chmod +x gradlew
-        ./gradlew assembleDebug
+        pip install --upgrade pip buildozer cython==0.29.36
+
+    - name: Clean cache and build
+      run: |
+        buildozer -v android debug
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: app-debug
-        path: android/app/build/outputs/apk/debug/app-debug.apk
+        name: behavioralshield-apk
+        path: bin/*.apk
         
