@@ -23,13 +23,6 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: Set up Android SDK
-      uses: android-actions/setup-android@v3
-
-    - name: Install Android SDK components & accept licenses
-      run: |
-        sdkmanager --sdk_root=${ANDROID_SDK_ROOT} --install "platforms;android-33" "build-tools;33.0.2" "platform-tools" "ndk;23.8.9338270"
-
     - name: Install dependencies
       run: |
         pip install --upgrade pip buildozer cython==0.29.36
@@ -43,4 +36,3 @@ jobs:
       with:
         name: kunguge-apk
         path: bin/*.apk
-        
