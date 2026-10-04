@@ -1,0 +1,27 @@
+Kwa kuwa kundi la kumbukumbu za tabia za simu yako ni tupu (`[]`), hii inamaanisha hakuna data maalum ya matumizi (kama vile app zinazotumia chaji nyingi, muda wa kutumia skrini, au matumizi ya data) iliyoonyeshwa hapa. Hata hivyo, ninaweza kutoa **mapendekezo mawili ya jumla** yanayofaa kwa simu zote za kisasa ili kuboresha uokoaji wa chaji na utendaji wa mfumo:
+
+### 1. **Fanya Uthibitisho wa App Zinazotumia Chaji Nyingi na Zinazotoka Mbele (Background Apps)**
+- **Chini ya utendaji:** App nyingi hufanya kazi kwa usiri (background) hata unapoitumia, na hivyo kuleta chaji na kushughulikia CPU/RAM.
+- **Mapendekezo:**
+  - Nenda kwenye **Settings > Battery** (au **Power**) na angalia listi ya app zinazotumia chaji nyingi zaidi.
+  - Zima app zinazotumia chaji nyingi lakini huzifai sana (kama social media, map, au app za kufanya kazi kwa usiri).
+  - Tumia chaguo la **"Restrict background activity"** au **"Battery saver"** kwa app hizo ili zifanye kazi tu unapozitumia moja kwa moja.
+  - Hii itapunguza matumizi ya chaji na kuboresha kasi ya mfumo kwa sababu CPU itakuwa na kazi kidogo.
+
+### 2. **Punguza Muda wa Kutumia Skrini na Kuboresha Usahihi wa Display**
+- **Chini ya utendaji:** Skrini ndiyo sehemu inayotumia chaji nyingi zaidi, hasa ikiwa ina refresh rate ya juu (kama 90Hz/120Hz) au ina brightness ya juu.
+- **Mapendekezo:**
+  - Punguza **brightness** ya skrini hadi kiwango cha wastani au tumia **auto-brightness**.
+  - Badilisha **refresh rate** kutoka 120Hz hadi 60Hz (ikiwa inapatikana) ikiwa huna haja ya utendaji wa juu wa animation.
+  - Tumia **Dark Mode** ikiwa simu yako ina skrini ya OLED/AMOLED, kwa sababu pikseli za njano hazitumii chaji.
+  - Hii itapunguza matumizi ya chaji kwa upeo mkubwa na kuboresha muda wa kutumia simu kwa chaji moja.
+
+---
+
+**Onyo:** Ikiwa unataka mapendekezo ya kina zaidi, tafadhali toa kumbukumbu za tabia (kama vile:
+- App 5 zinazotumia chaji nyingi zaidi
+- Muda wa wastani wa kutumia skrini kwa siku
+- Matumizi ya data ya mtandao
+- Hali ya chaji ya simu (kama inapungua haraka)
+
+Nitaweza kutoa ushauri maalum zaidi.
