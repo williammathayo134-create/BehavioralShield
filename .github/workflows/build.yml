@@ -27,6 +27,10 @@ jobs:
       run: |
         pip install --upgrade pip buildozer cython==0.29.36
 
+    - name: Clean up old build cache to force fresh download
+      run: |
+        rm -rf .buildozer bin/ .plat
+
     - name: Accept Android SDK licenses
       run: |
         mkdir -p ~/.android
