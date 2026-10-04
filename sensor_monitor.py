@@ -6,7 +6,7 @@ via I²C and print the values in physical units (g and °/s).
 Requirements:
     pip install smbus2
 """
-
+import os
 import time
 from smbus2 import SMBus
 
@@ -94,18 +94,22 @@ def main() -> None:
     sensor = MPU6050()
     print("Press Ctrl‑C to stop.\n")
     try:
-        while True:
+ while True:
+            if os.getenv("SYSTEM_ENABLED", "false").lower() != "true":                time.sleep(1)
+                continue
+
             ax, ay, az = sensor.read_accel()
             gx, gy, gz = sensor.read_gyro()
             print(
-                f"Accel [g] : X={ax:6.3f}  Y={ay:6.3f}  Z={az:6.3f} | "
-                f"Gyro [°/s]: X={gx:6.2f}  Y={gy:6.2f}  Z={gz:6.2f}"
+                f"Accel [g] : X={ax:6.3f} Y={ay:6.3f} Z={az:6.3f} | "
+                f"Gyro [°/s]: X={gx:6.2f} Y={gy:6.2f} Z={gz:6.2f}"
             )
-            time.sleep(0.1)   # 10 Hz update rate
+            time.sleep(0.1)  # 10 Hz update rate
     except KeyboardInterrupt:
         print("\nStopping...")
     finally:
         sensor.close()
+
 
 
 if __name__ == "__main__":

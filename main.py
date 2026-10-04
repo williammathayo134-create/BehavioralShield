@@ -71,6 +71,8 @@ logging.basicConfig(
     stream=sys.stdout,
 )
 logger = logging.getLogger("local‑cloud‑sync")
+# --- Master Switch (ON/OFF) ---
+SYSTEM_ENABLED: bool = os.getenv("SYSTEM_ENABLED", "false").lower() == "true"
 
 # --------------------------------------------------------------------------- #
 #                               DATA MODEL                                    #
@@ -365,4 +367,4 @@ def start_scheduler() -> BackgroundScheduler:
     exit cleanly when the main thread finishes.
     """
     scheduler = BackgroundScheduler()
-    trigger = _parse_cron(WEEKLY_CRON
+    trigger = _parse_cron(WEEKLY_CRON)
