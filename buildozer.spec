@@ -42,7 +42,7 @@ version = 0.1
 # version.filename = %(source.dir)s/main.py
 
 # (list) Application requirements
-requirements = python3,smbus2,apscheduler,python-dotenv,termux-api
+requirements = python3,kivy,apscheduler,python-dotenv
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
