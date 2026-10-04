@@ -1,4 +1,4 @@
-name: Build Kunguge APK
+name: Build Android APK
 
 on:
   push:
@@ -10,42 +10,35 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout Code
+      uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
       with:
-        python-version: '3.10'
+        node-version: '18'
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Sync Capacitor for Android
+      run: npx cap sync android
 
     - name: Set up JDK 17
       uses: actions/setup-java@v4
       with:
-        distribution: 'temurin'
         java-version: '17'
+        distribution: 'temurin'
 
-    - name: Install dependencies
+    - name: Build Android APK
       run: |
-        pip install --upgrade pip buildozer cython==0.29.36
-
-    - name: Clean up old build cache to force fresh download
-      run: |
-        rm -rf .buildozer bin/ .plat
-
-    - name: Accept Android SDK licenses
-      run: |
-        mkdir -p ~/.android
-        echo "### License" > ~/.android/repositories.cfg
-        echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" >> ~/.android/repositories.cfg
-        echo -e "d56f5187479451eabf01fb78af6dfcb131a648db" >> ~/.android/repositories.cfg
-        echo -e "24333f8a63b6825ea9c5514f83c2829b004d1fb8" >> ~/.android/repositories.cfg
-        echo -e "d975f751698a77b660f125453e3a130465d262c2" >> ~/.android/repositories.cfg
-
-    - name: Build with Buildozer
-      run: |
-        buildozer -v android debug
+        cd android
+        chmod +x gradlew
+        ./gradlew assembleDebug
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: kunguge-apk
-        path: bin/*.apk
+        name: app-debug
+        path: android/app/build/outputs/apk/debug/app-debug.apk
+        
